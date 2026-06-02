@@ -17,7 +17,7 @@ namespace BibliotecaApp
 
     public virtual void MostrarInformacion()
     {
-      Console.WriteLine($"El isbn es [{ISBN}] el titulo es [{Titulo}] el año de publicacion es [{Anio}] y el costo es de [{Costo}]");
+      Console.WriteLine($"El isbn es {ISBN} el titulo es {Titulo} el año de publicacion es {Anio} y el costo es de {Costo}");
     }
   }
 }

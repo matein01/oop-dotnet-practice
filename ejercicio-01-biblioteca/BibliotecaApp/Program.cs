@@ -19,17 +19,27 @@
         switch (op)
         {
           case 1:
+            Publicacion? p = null;
+            
             Console.WriteLine("Para crear una nueva revista preciona 1");
             Console.WriteLine("Para crear un nuevo libro preciona 2");
             op = Convert.ToInt32(Console.ReadLine());
+
             if (op == 1)
             {
-              Revista revista = new Revista(15, 23, "Comica", "Chespirito", 2026, "afagf");
-              biblioteca.AgregarPublicacion(revista);
-            }else if(op == 2)
+              p = PublicacionFactory.Crear("revista");
+            }
+            else if (op == 2)
             {
-              Libro libro = new Libro("Mateo Guerrero", 23, "Comica", "Chespirito", 2026, "afagf");
-              biblioteca.AgregarPublicacion(libro);
+              p = PublicacionFactory.Crear("libro");
+            }
+            else
+            {
+              Console.WriteLine("Opcion no valida");
+            }
+            if (p != null)
+            {
+              biblioteca.AgregarPublicacion(p);
             }
             break;
           case 2:
