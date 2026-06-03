@@ -4,7 +4,6 @@ namespace BibliotecaApp
   {
     public static Publicacion? Crear(string tipo)
     {
-      string tipoo;
       string input;
       string titulo;
       int anio;
@@ -20,10 +19,6 @@ namespace BibliotecaApp
       //Se pide el isbn
       Console.WriteLine($"Escribe el isbn de {titulo}");
       isbn = Console.ReadLine();
-
-      //Se pide el tipo
-      Console.WriteLine($"De que tipo es {titulo}");
-      tipoo = Console.ReadLine();
 
       //Se pide el año de publicacion y se asegura que sea del tipo int
       Console.WriteLine($"Escribe el año de publicacion de {titulo}");
@@ -55,7 +50,7 @@ namespace BibliotecaApp
         Console.WriteLine($"Escribe el nombre del autor de {titulo}");
         autor = Console.ReadLine();
 
-        Libro libro = new Libro(autor, costo, tipoo, titulo, anio, isbn);
+        Libro libro = new Libro(autor, costo, tipo, titulo, anio, isbn);
         return libro;
 
       }
@@ -73,7 +68,7 @@ namespace BibliotecaApp
           pagina = 0;
         }
 
-        Revista revista = new Revista(pagina, costo, tipoo, titulo, anio, isbn);
+        Revista revista = new Revista(pagina, costo, tipo, titulo, anio, isbn);
         return revista;
       }
       return null;

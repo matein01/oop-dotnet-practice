@@ -70,8 +70,17 @@ namespace BibliotecaApp
             }
             break;
           case 2:
-            //Se llama el metodo de biblioteca para mostrar las publicaciones existentes
-            biblioteca.MostrarPublicaciones();
+            //Se crea un objeto de PublicacionRepositorio que va a tener el metodo para traer la informacion de la BD
+            PublicacionRepositorio repositoriom = new PublicacionRepositorio();
+
+            //Se crea una lista de objetos tipo Publicacion, que tendra la infromacion de la BD
+            List<Publicacion> lista = repositoriom.ObtenerTodas();
+
+            //Metodo para iterar que se utiliza para mostrar la informacion guardada en lista
+            foreach (Publicacion ps in lista)
+            {
+              ps.MostrarInformacion();
+            }
             break;
           case 3:
             //Mensaje interactivo para el usuario
