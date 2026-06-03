@@ -21,6 +21,10 @@ namespace BibliotecaApp
       Console.WriteLine($"Escribe el isbn de {titulo}");
       isbn = Console.ReadLine();
 
+      //Se pide el tipo
+      Console.WriteLine($"De que tipo es {titulo}");
+      tipoo = Console.ReadLine();
+
       //Se pide el año de publicacion y se asegura que sea del tipo int
       Console.WriteLine($"Escribe el año de publicacion de {titulo}");
       input = Console.ReadLine();
@@ -47,10 +51,6 @@ namespace BibliotecaApp
 
       if (tipo == "libro")
       {
-        //Se pide el tipo del libro
-        Console.WriteLine($"Escribe el tipo de libro que es {titulo}");
-        tipoo = Console.ReadLine();
-
         //Se pide el autor
         Console.WriteLine($"Escribe el nombre del autor de {titulo}");
         autor = Console.ReadLine();
@@ -61,10 +61,6 @@ namespace BibliotecaApp
       }
       else if (tipo == "revista")
       {
-        //Se pide el tipo de la revista
-        Console.WriteLine($"Escribe el tipo de la revista que es{titulo}");
-        tipoo = Console.ReadLine();
-
         //Se pide la cantidad de paginas y se asegura que sea del tipo int
         Console.WriteLine($"Escribe la cantidad de paginas de {titulo}");
         input = Console.ReadLine();
