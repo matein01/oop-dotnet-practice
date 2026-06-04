@@ -6,9 +6,10 @@ namespace BibliotecaApp
   {
     static void Main(string[] args)
     {
-      //Variables, continuar es para detener el while y op es para navegar en el switch
+      //Variables, continuar es para detener el while, op es para navegar en el switch y id para eliminar publicaciones
       bool continuar = true;
       int op;
+      int id;
       //Se crea un objeto del tipo biblioteca para utilizar los metodos de biblioteca
       Biblioteca biblioteca = new Biblioteca("Biblioteca central", "Calle 123");
       //Se crea un objeto de publicacion basio para usarlo despues dentro de los if
@@ -22,7 +23,8 @@ namespace BibliotecaApp
         Console.WriteLine("Para crear una nueva publicacion preciona 1");
         Console.WriteLine("Para mostrar las publicaciones preciona 2");
         Console.WriteLine("Para modificar una publicacion preciona 3");
-        Console.WriteLine("Para salir preciona 4");
+        Console.WriteLine("Para eliminar una publicacion preciona 4");
+        Console.WriteLine("Para salir preciona 5");
 
         //Se convierte el string en un int para la variable op
         op = Convert.ToInt32(Console.ReadLine());
@@ -63,18 +65,18 @@ namespace BibliotecaApp
               biblioteca.AgregarPublicacion(p);
 
               //Se crera un objeto del tipo PublicacionRepositorio
-              PublicacionRepositorio repositorio = new PublicacionRepositorio();
+              PublicacionRepositorio repositoriouno = new PublicacionRepositorio();
 
               //Se usa el metodo de repositorio para guardar la publicacion en una base de datos
-              repositorio.Guardar(p);
+              repositoriouno.Guardar(p);
             }
             break;
           case 2:
             //Se crea un objeto de PublicacionRepositorio que va a tener el metodo para traer la informacion de la BD
-            PublicacionRepositorio repositoriom = new PublicacionRepositorio();
+            PublicacionRepositorio repositoriodos = new PublicacionRepositorio();
 
             //Se crea una lista de objetos tipo Publicacion, que tendra la infromacion de la BD
-            List<Publicacion> lista = repositoriom.ObtenerTodas();
+            List<Publicacion> lista = repositoriodos.ObtenerTodas();
 
             //Metodo para iterar que se utiliza para mostrar la informacion guardada en lista
             foreach (Publicacion ps in lista)
@@ -115,13 +117,26 @@ namespace BibliotecaApp
               //Se le agrega el id ingresado al objeto creado
               p.Id = idIngresado;
               //Se crera un objeto del tipo PublicacionRepositorio
-              PublicacionRepositorio repositorio = new PublicacionRepositorio();
+              PublicacionRepositorio repositoriotres = new PublicacionRepositorio();
 
               //Se usa el metodo de repositorio para guardar la publicacion en una base de datos
-              repositorio.Actualizar(p);
+              repositoriotres.Actualizar(p);
             }
             break;
           case 4:
+            //Se pide el id de la publicacion a eliminar
+            Console.WriteLine("Ingresa el id de la publicacion a eliminar");
+
+            //Se convierte el string en un int para la variable id
+            id = Convert.ToInt32(Console.ReadLine());
+
+            //Se crera un objeto del tipo PublicacionRepositorio
+            PublicacionRepositorio repositoriocuatro = new PublicacionRepositorio();
+
+            //Se envia el id al metodo eliminar para que sepa que publicacion eliminar
+            repositoriocuatro.Eliminar(id);
+            break;
+          case 5:
             //Mensaje interactivo para el usuario
             Console.WriteLine("Saliendo del programa");
             //La variable continuar cambia a false para cerrar el bucle del while

@@ -149,8 +149,8 @@ namespace BibliotecaApp.Models
           //Se ejecuta el query y no se espera ninguna respuesta
           cmdl.ExecuteNonQuery();
         }
-        
-        else if(publicacion is Revista revista)
+
+        else if (publicacion is Revista revista)
         {
           //Query para modificar una revista
           SqlCommand cmdr = new SqlCommand("UPDATE Revistas SET Paginas = @paginas WHERE Id = @id", con);
@@ -162,6 +162,31 @@ namespace BibliotecaApp.Models
           //Se ejecuta el query y no se espera ninguna respuesta
           cmdr.ExecuteNonQuery();
         }
+      }
+    }
+    
+    //Metodo para eliminar publicaciones
+    public void Eliminar(int id)
+    {
+      using (SqlConnection con = ConexionDB.ObtenerConexion())
+      {
+        //Se abre la conexion
+        con.Open();
+
+        //Query para eliminar
+        SqlCommand cmdl = new SqlCommand("DELETE FROM Libros WHERE Id = @id", con);
+        SqlCommand cmdr = new SqlCommand("DELETE FROM Revistas WHERE Id = @id", con);
+        SqlCommand cmd = new SqlCommand("DELETE FROM Publicaciones WHERE Id = @id", con);
+
+        //El AddWithValue de publicacion
+        cmdl.Parameters.AddWithValue("@id", id);
+        cmdr.Parameters.AddWithValue("@id", id);
+        cmd.Parameters.AddWithValue("@id", id);
+
+        //Se ejecuta el query y no se espera ninguna respuesta
+        cmdl.ExecuteNonQuery();
+        cmdr.ExecuteNonQuery();
+        cmd.ExecuteNonQuery();
       }
     }
   }
