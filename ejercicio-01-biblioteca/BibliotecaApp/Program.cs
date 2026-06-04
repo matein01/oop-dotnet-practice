@@ -11,6 +11,8 @@ namespace BibliotecaApp
       int op;
       //Se crea un objeto del tipo biblioteca para utilizar los metodos de biblioteca
       Biblioteca biblioteca = new Biblioteca("Biblioteca central", "Calle 123");
+      //Se crea un objeto de publicacion basio para usarlo despues dentro de los if
+      Publicacion? p = null;
 
       //Empieza el bucle
       do
@@ -19,7 +21,8 @@ namespace BibliotecaApp
         Console.WriteLine("Este es el menu de la biblioteca");
         Console.WriteLine("Para crear una nueva publicacion preciona 1");
         Console.WriteLine("Para mostrar las publicaciones preciona 2");
-        Console.WriteLine("Para salir preciona 3");
+        Console.WriteLine("Para modificar una publicacion preciona 3");
+        Console.WriteLine("Para salir preciona 4");
 
         //Se convierte el string en un int para la variable op
         op = Convert.ToInt32(Console.ReadLine());
@@ -28,9 +31,6 @@ namespace BibliotecaApp
         switch (op)
         {
           case 1:
-            //Se crea un objeto de publicacion basio para usarlo despues dentro de los if
-            Publicacion? p = null;
-
             //Sub menu de publicacion
             Console.WriteLine("Para crear una nueva revista preciona 1");
             Console.WriteLine("Para crear un nuevo libro preciona 2");
@@ -83,6 +83,45 @@ namespace BibliotecaApp
             }
             break;
           case 3:
+            //Se pide el tipo de publicacion a modificar
+            Console.WriteLine("Para modificar una revista escriba 1, para modificar un libro escriba 2");
+
+            //Se convierte el string en un int para la variable op
+            op = Convert.ToInt32(Console.ReadLine());
+
+            //Se pide el id para saber que publicacion modificar
+            Console.WriteLine("Ingresar el id de la publicacion a modificar");
+            int idIngresado = Convert.ToInt32(Console.ReadLine());
+
+            //Si es un libro se crea una publicacion de tipo libro
+            if (op == 1)
+            {
+              p = PublicacionFactory.Crear("revista");
+            }
+            //Si es una revista se crea una publicacion de tipo revista
+            else if (op == 2)
+            {
+              p = PublicacionFactory.Crear("libro");
+            }
+            //Se busca atrapar un error
+            else
+            {
+              //Se busca atrapar un error
+              Console.WriteLine("Opcion no valida");
+            }
+            //Se busca saber si el objeto p es nulo
+            if (p != null)
+            {
+              //Se le agrega el id ingresado al objeto creado
+              p.Id = idIngresado;
+              //Se crera un objeto del tipo PublicacionRepositorio
+              PublicacionRepositorio repositorio = new PublicacionRepositorio();
+
+              //Se usa el metodo de repositorio para guardar la publicacion en una base de datos
+              repositorio.Actualizar(p);
+            }
+            break;
+          case 4:
             //Mensaje interactivo para el usuario
             Console.WriteLine("Saliendo del programa");
             //La variable continuar cambia a false para cerrar el bucle del while

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace BibliotecaApp.Models
@@ -88,9 +84,10 @@ namespace BibliotecaApp.Models
             string titulo = reader["Titulo"].ToString();
             int anio = Convert.ToInt32(reader["Anio"]);
             string isbn = reader["ISBN"].ToString();
+            int id = Convert.ToInt32(reader["Id"]);
 
             //Se crea el objeto
-            Libro libro = new Libro(autor, costo, tipoo, titulo, anio, isbn);
+            Libro libro = new Libro(autor, costo, tipoo, titulo, anio, isbn, id);
 
             //Se agrea el objeto en la lista que ya no esta vacia
             lstpublicaciones.Add(libro);
@@ -104,9 +101,10 @@ namespace BibliotecaApp.Models
             string titulo = reader["Titulo"].ToString();
             int anio = Convert.ToInt32(reader["Anio"]);
             string isbn = reader["ISBN"].ToString();
+            int id = Convert.ToInt32(reader["Id"]);
 
             //Se crea el objeto
-            Revista revista = new Revista(paginas, costo, tipoo, titulo, anio, isbn);
+            Revista revista = new Revista(paginas, costo, tipoo, titulo, anio, isbn, id);
 
             //Se agrea el objeto en la lista que ya no esta vacia
             lstpublicaciones.Add(revista);
@@ -115,6 +113,56 @@ namespace BibliotecaApp.Models
       }
       //Se retorna la lista que contiene el objeto correcto con los datos que llegaron de la BD
       return lstpublicaciones;
+    }
+
+    //Metodo para modificar publicaciones
+    public void Actualizar(Publicacion publicacion)
+    {
+      using (SqlConnection con = ConexionDB.ObtenerConexion())
+      {
+        //Se abre la coneccion
+        con.Open();
+
+        //Query para modificar una publicacion
+        SqlCommand cmd = new SqlCommand("UPDATE Publicaciones SET Tipo = @tipo, Titulo = @titulo, Anio = @anio, ISBN = @isbn, Costo = @costo WHERE Id = @id", con);
+
+        //Se escriben los AddWithValue para poder pasar paramatros y no strings
+        cmd.Parameters.AddWithValue("@titulo", publicacion.Titulo);
+        cmd.Parameters.AddWithValue("@anio", publicacion.Anio);
+        cmd.Parameters.AddWithValue("@isbn", publicacion.ISBN);
+        cmd.Parameters.AddWithValue("@costo", publicacion.Costo);
+        cmd.Parameters.AddWithValue("@id", publicacion.Id);
+        cmd.Parameters.AddWithValue("@tipo", publicacion.Tipo);
+
+        //Se ejecuta el query y no se espera ninguna respuesta
+        cmd.ExecuteNonQuery();
+
+        if (publicacion is Libro libro)
+        {
+          //Query para modificar un libro
+          SqlCommand cmdl = new SqlCommand("UPDATE Libros SET Autor = @autor WHERE Id = @id", con);
+
+          //Los AddWithValue de Libros
+          cmdl.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdl.Parameters.AddWithValue("@autor", libro.Autor);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdl.ExecuteNonQuery();
+        }
+        
+        else if(publicacion is Revista revista)
+        {
+          //Query para modificar una revista
+          SqlCommand cmdr = new SqlCommand("UPDATE Revistas SET Paginas = @paginas WHERE Id = @id", con);
+
+          //Los AddWithValue de revista
+          cmdr.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdr.Parameters.AddWithValue("@paginas", revista.Paginas);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdr.ExecuteNonQuery();
+        }
+      }
     }
   }
 }
