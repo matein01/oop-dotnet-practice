@@ -164,7 +164,68 @@ namespace BibliotecaApp.Models
         }
       }
     }
-    
+
+    //Metodo para buscar por Id
+    public Publicacion? BuscarPorId(int idIngresado)
+    {
+      //Se crea un objeto vacio
+      Publicacion? p = null;
+
+      using (SqlConnection con = ConexionDB.ObtenerConexion())
+      {
+        //Se abre la coneccion
+        con.Open();
+
+        //Query para traer informacion
+        SqlCommand cmd = new SqlCommand("SELECT p.Id, p.Titulo, p.Anio, p.ISBN, p.Costo, p.Tipo, l.Autor, r.Paginas FROM Publicaciones p LEFT JOIN Libros l ON p.Id = l.Id LEFT JOIN Revistas r ON p.Id = r.ID WHERE p.Id = @id", con);
+
+        //Se usa el AddWithValue para pasarle el id ingresado al query
+        cmd.Parameters.AddWithValue("@id", idIngresado);
+
+        //Se crea un objeto del tipo SqlDataReader para poder leer las columnas que se obtengan de la BD
+        SqlDataReader reader = cmd.ExecuteReader();
+
+        //Se lee solo si la BD devolvio informacion
+        if (reader.Read())
+        {
+          //Primero se obtiene el tipo de publicacion para crear el objeto correto
+          string tipo = reader["Tipo"].ToString();
+
+          //Saber si es de tipo libro
+          if (tipo == "libro")
+          {
+            //Se guarda el valor de las columnas de la BD en variables para crear el objeto
+            string autor = reader["Autor"].ToString();
+            double costo = Convert.ToDouble(reader["Costo"]);
+            string tipoo = reader["Tipo"].ToString();
+            string titulo = reader["Titulo"].ToString();
+            int anio = Convert.ToInt32(reader["Anio"]);
+            string isbn = reader["ISBN"].ToString();
+            int id = Convert.ToInt32(reader["Id"]);
+
+            //Se crea el objeto
+            p = new Libro(autor, costo, tipoo, titulo, anio, isbn, id);
+          }
+          else if (tipo == "revista")
+          {
+            //Se guarda el valor de las columnas de la BD en variables para crear el objeto
+            int paginas = Convert.ToInt32(reader["Paginas"]);
+            double costo = Convert.ToDouble(reader["Costo"]);
+            string tipoo = reader["Tipo"].ToString();
+            string titulo = reader["Titulo"].ToString();
+            int anio = Convert.ToInt32(reader["Anio"]);
+            string isbn = reader["ISBN"].ToString();
+            int id = Convert.ToInt32(reader["Id"]);
+
+            //Se crea el objeto
+            p = new Revista(paginas, costo, tipoo, titulo, anio, isbn, id);
+          }
+        }
+      }
+      //Se retorna la publicacion que se buscaba
+      return p;
+    }
+
     //Metodo para eliminar publicaciones
     public void Eliminar(int id)
     {
