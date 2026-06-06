@@ -14,13 +14,13 @@ namespace BibliotecaApp
       Direccion = direccion;
     }
 
-    //Metodo para agregar una publicacion al listado de publicaciones
+    //Método para agregar una publicación al listado de publicaciones
     public void AgregarPublicacion(Publicacion publicacion)
     {
       Publicaciones.Add(publicacion);
     }
 
-    //Metodo para mostrar todas las publicaciones guardadas en la lista de publicaciones
+    //Método para mostrar todas las publicaciones guardadas en la lista de publicaciones
     public void MostrarPublicaciones()
     {
       for (int i = 0; i < Publicaciones.Count; i++)
