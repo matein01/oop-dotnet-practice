@@ -21,5 +21,18 @@ namespace BibliotecaWebApp.Controllers
 
       return Ok(publicaciones);
     }
+
+    [HttpGet("{id}")]
+    public IActionResult BucarPorId(int id)
+    {
+      var publicacion = _repositorio.BuscarPorId(id);
+
+      if (publicacion == null)
+      {
+        return NotFound($"No existe una publicación con id {id}");
+      }
+
+      return Ok(publicacion);
+    }
   }
 }
