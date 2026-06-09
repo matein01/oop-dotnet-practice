@@ -1,3 +1,4 @@
+using BibliotecaWebApp.Models;
 using BibliotecaWebApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,27 @@ namespace BibliotecaWebApp.Controllers
       var publicaciones = _repositorio.ObtenerTodas();
 
       return Ok(publicaciones);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult BucarPorId(int id)
+    {
+      var publicacion = _repositorio.BuscarPorId(id);
+
+      if (publicacion == null)
+      {
+        return NotFound($"No existe una publicación con id {id}");
+      }
+
+      return Ok(publicacion);
+    }
+
+    [HttpPost]
+    public IActionResult Crear([FromBody] Publicacion p)
+    {
+      var publicacion = _repositorio.Guardar(p);
+
+      return Created($"api/Publicaciones/{publicacion.Id}", publicacion);
     }
   }
 }
