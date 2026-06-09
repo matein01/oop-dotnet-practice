@@ -1,3 +1,4 @@
+using BibliotecaWebApp.Models;
 using BibliotecaWebApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,14 @@ namespace BibliotecaWebApp.Controllers
       }
 
       return Ok(publicacion);
+    }
+
+    [HttpPost]
+    public IActionResult Crear([FromBody] Publicacion p)
+    {
+      var publicacion = _repositorio.Guardar(p);
+
+      return Created($"api/Publicaciones/{publicacion.Id}", publicacion);
     }
   }
 }
