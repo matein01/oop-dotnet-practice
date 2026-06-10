@@ -324,5 +324,103 @@ namespace BibliotecaWebApp.Repositories
       p.Id = id;
       return p;
     }
+
+    public void Actualizar(Publicacion publicacion)
+    {
+      using (SqlConnection con = _conexion.ObtenerConexion())
+      {
+        con.Open();
+
+        SqlCommand cmd = new SqlCommand("UPDATE Publicaciones SET Tipo = @tipo, Titulo = @titulo, Anio = @anio, ISBN = @isbn, Costo = @costo WHERE Id = @id", con);
+
+        cmd.Parameters.AddWithValue("@titulo", publicacion.Titulo);
+        cmd.Parameters.AddWithValue("@anio", publicacion.Anio);
+        cmd.Parameters.AddWithValue("@isbn", publicacion.ISBN);
+        cmd.Parameters.AddWithValue("@costo", publicacion.Costo);
+        cmd.Parameters.AddWithValue("@id", publicacion.Id);
+        cmd.Parameters.AddWithValue("@tipo", publicacion.Tipo);
+
+        cmd.ExecuteNonQuery();
+
+        if (publicacion is Libro libro)
+        {
+          //Query para modificar los datos específicos en la tabla Libros
+          SqlCommand cmdl = new SqlCommand("UPDATE Libros SET Autor = @autor WHERE Id = @id", con);
+
+          //Los AddWithValue de Libros
+          cmdl.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdl.Parameters.AddWithValue("@autor", libro.Autor);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdl.ExecuteNonQuery();
+        }
+
+        //Se verifica si la publicación es una revista
+        else if (publicacion is Revista revista)
+        {
+          //Query para modificar los datos específicos en la tabla Revistas
+          SqlCommand cmdr = new SqlCommand("UPDATE Revistas SET Paginas = @paginas WHERE Id = @id", con);
+
+          //Los AddWithValue de Revistas
+          cmdr.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdr.Parameters.AddWithValue("@paginas", revista.Paginas);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdr.ExecuteNonQuery();
+        }
+        //Se verifica si la publicación es un cómic
+        else if (publicacion is Comic comic)
+        {
+          //Query para modificar los datos específicos en la tabla Comics
+          SqlCommand cmdc = new SqlCommand("UPDATE Comics SET Heroe = @heroe WHERE Id = @id", con);
+
+          //Los AddWithValue de Comics
+          cmdc.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdc.Parameters.AddWithValue("@heroe", comic.Heroe);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdc.ExecuteNonQuery();
+        }
+        //Se verifica si la publicación es un periódico
+        else if (publicacion is Periodico periodico)
+        {
+          //Query para modificar los datos específicos en la tabla Periodicos
+          SqlCommand cmdp = new SqlCommand("UPDATE Periodicos SET Noticia = @noticia WHERE Id = @id", con);
+
+          //Los AddWithValue de Periodicos
+          cmdp.Parameters.AddWithValue("@id", publicacion.Id);
+          cmdp.Parameters.AddWithValue("@noticia", periodico.Noticia);
+
+          //Se ejecuta el query y no se espera ninguna respuesta
+          cmdp.ExecuteNonQuery();
+        }
+      }
+    }
+
+    public void Eliminar(int id)
+    {
+      using (SqlConnection con = _conexion.ObtenerConexion())
+      {
+        con.Open();
+
+        SqlCommand cmdl = new SqlCommand("DELETE FROM Libros WHERE Id = @id", con);
+        SqlCommand cmdr = new SqlCommand("DELETE FROM Revistas WHERE Id = @id", con);
+        SqlCommand cmdc = new SqlCommand("DELETE FROM Comics WHERE Id = @id", con);
+        SqlCommand cmdp = new SqlCommand("DELETE FROM Periodicos WHERE Id = @id", con);
+        SqlCommand cmd = new SqlCommand("DELETE FROM Publicaciones WHERE Id = @id", con);
+
+        cmdl.Parameters.AddWithValue("@id", id);
+        cmdr.Parameters.AddWithValue("@id", id);
+        cmdc.Parameters.AddWithValue("@id", id);
+        cmdp.Parameters.AddWithValue("@id", id);
+        cmd.Parameters.AddWithValue("@id", id);
+
+        cmdl.ExecuteNonQuery();
+        cmdr.ExecuteNonQuery();
+        cmdc.ExecuteNonQuery();
+        cmdp.ExecuteNonQuery();
+        cmd.ExecuteNonQuery();
+      }
+    }
   }
 }

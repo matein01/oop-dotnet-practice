@@ -43,5 +43,20 @@ namespace BibliotecaWebApp.Controllers
 
       return Created($"api/Publicaciones/{publicacion.Id}", publicacion);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult Eliminar(int id)
+    {
+      var encontrada = _repositorio.BuscarPorId(id);
+
+      if (encontrada == null)
+      {
+        return NotFound($"No existe una publicación con id {id}");
+      }
+
+      _repositorio.Eliminar(id);
+
+      return NoContent();
+    }
   }
 }
