@@ -22,5 +22,13 @@ namespace BibliotecaWebApp.Controllers
 
       return Created($"api/Revistas/{publicacion.Id}", publicacion);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult Actualizar(int id, [FromBody] Revista revista)
+    {
+      revista.Id = id;
+      _repositorio.Actualizar(revista);
+      return Ok(revista);
+    }
   }
 }
