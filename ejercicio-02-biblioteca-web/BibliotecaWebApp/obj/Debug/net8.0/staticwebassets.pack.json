@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\app.js",
+      "PackagePath": "staticwebassets\\app.js"
+    },
+    {
+      "Id": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BibliotecaWebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BibliotecaWebApp.props",
+      "PackagePath": "build\\BibliotecaWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BibliotecaWebApp.props",
+      "PackagePath": "buildMultiTargeting\\BibliotecaWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BibliotecaWebApp.props",
+      "PackagePath": "buildTransitive\\BibliotecaWebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

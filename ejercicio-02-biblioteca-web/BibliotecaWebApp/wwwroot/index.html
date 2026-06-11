@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Biblioteca</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Título</th>
+          <th>Tipo</th>
+          <th>Año</th>
+          <th>ISBN</th>
+          <th>Costo</th>
+          <th>Detalle</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaPublicaciones"></tbody>
+    </table>
+
+    <h2>Nueva publicación</h2>
+    <form id="formularioPublicacion">
+      <select id="tipo" name="tipo" onchange="mostrarCampoEspecifico()">
+        <option value="">-- Selecciona un tipo --</option>
+        <option value="libro">Libro</option>
+        <option value="revista">Revista</option>
+        <option value="comic">Comic</option>
+        <option value="periodico">Periodico</option>
+      </select>
+      <input type="text" id="titulo" placeholder="Título" />
+      <input type="number" id="anio" placeholder="Año" />
+      <input type="text" id="isbn" placeholder="ISBN" />
+      <input type="number" id="costo" placeholder="Costo" step="0.01" />
+
+      <input type="text" id="autor" placeholder="Autor" style="display: none" />
+      <input
+        type="number"
+        id="paginas"
+        placeholder="Páginas"
+        style="display: none"
+      />
+      <input type="text" id="heroe" placeholder="Héroe" style="display: none" />
+      <input
+        type="text"
+        id="noticia"
+        placeholder="Noticia"
+        style="display: none"
+      />
+
+      <button
+        type="button"
+        id="crear"
+        onclick="crearPublicacion()"
+        style="display: none"
+      >
+        Guardar
+      </button>
+      <button
+        type="button"
+        id="editar"
+        onclick="actualizarPublicacion()"
+        style="display: none"
+      >
+        Actualizar
+      </button>
+    </form>
+  </body>
+</html>

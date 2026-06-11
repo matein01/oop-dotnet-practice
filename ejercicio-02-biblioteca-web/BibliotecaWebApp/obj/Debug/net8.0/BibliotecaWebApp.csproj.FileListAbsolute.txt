@@ -72,3 +72,4 @@ C:\Desarrollo\C#\Practica-oop-dotnet\oop-dotnet-practice\ejercicio-02-biblioteca
 C:\Desarrollo\C#\Practica-oop-dotnet\oop-dotnet-practice\ejercicio-02-biblioteca-web\BibliotecaWebApp\obj\Debug\net8.0\BibliotecaWebApp.pdb
 C:\Desarrollo\C#\Practica-oop-dotnet\oop-dotnet-practice\ejercicio-02-biblioteca-web\BibliotecaWebApp\obj\Debug\net8.0\BibliotecaWebApp.genruntimeconfig.cache
 C:\Desarrollo\C#\Practica-oop-dotnet\oop-dotnet-practice\ejercicio-02-biblioteca-web\BibliotecaWebApp\obj\Debug\net8.0\ref\BibliotecaWebApp.dll
+C:\Desarrollo\C#\Practica-oop-dotnet\oop-dotnet-practice\ejercicio-02-biblioteca-web\BibliotecaWebApp\bin\Debug\net8.0\BibliotecaWebApp.staticwebassets.runtime.json
