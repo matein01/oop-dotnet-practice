@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "nncy3uInJqhXbD9winhSv+iEh2USmoY5R9FFEQsIzZY=",
+  "Hash": "g7Twly2KTMLSRBVOGC9s7DVZw8Scyz45ub3Dxl50E6s=",
   "Source": "BibliotecaWebApp",
   "BasePath": "_content/BibliotecaWebApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "BibliotecaWebApp\\wwwroot",
+      "Source": "BibliotecaWebApp",
+      "ContentRoot": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\",
+      "BasePath": "_content/BibliotecaWebApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\app.js",
+      "SourceId": "BibliotecaWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\",
+      "BasePath": "_content/BibliotecaWebApp",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
+    {
+      "Identity": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\index.html",
+      "SourceId": "BibliotecaWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Desarrollo\\C#\\Practica-oop-dotnet\\oop-dotnet-practice\\ejercicio-02-biblioteca-web\\BibliotecaWebApp\\wwwroot\\",
+      "BasePath": "_content/BibliotecaWebApp",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
 }
